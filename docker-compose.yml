@@ -3,11 +3,11 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
+    container_name: auction-app
     ports:
       - "8080:8080"
     env_file:
       - cmd/auction/.env
-    command: sh -c "/auction"
     depends_on:
       - mongodb
     networks:

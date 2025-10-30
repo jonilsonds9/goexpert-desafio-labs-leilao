@@ -2,8 +2,9 @@ package main
 
 import (
 	"context"
+	"log"
+
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	"github.com/jonilsonds9/goexpert-desafio-labs-leilao/configuration/database/mongodb"
 	"github.com/jonilsonds9/goexpert-desafio-labs-leilao/internal/infra/api/web/controller/auction_controller"
 	"github.com/jonilsonds9/goexpert-desafio-labs-leilao/internal/infra/api/web/controller/bid_controller"
@@ -15,16 +16,10 @@ import (
 	"github.com/jonilsonds9/goexpert-desafio-labs-leilao/internal/usecase/bid_usecase"
 	"github.com/jonilsonds9/goexpert-desafio-labs-leilao/internal/usecase/user_usecase"
 	"go.mongodb.org/mongo-driver/mongo"
-	"log"
 )
 
 func main() {
 	ctx := context.Background()
-
-	if err := godotenv.Load("cmd/auction/.env"); err != nil {
-		log.Fatal("Error trying to load env variables")
-		return
-	}
 
 	databaseConnection, err := mongodb.NewMongoDBConnection(ctx)
 	if err != nil {
